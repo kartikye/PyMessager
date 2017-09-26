@@ -21,6 +21,7 @@ SUBTITLE_FIELD = "subtitle"
 IMAGE_FIELD = "image_url"
 BUTTONS_FIELD = "buttons"
 PAYLOAD_FIELD = "payload"
+WEBVIEW_HEIGHT_FIELD = "webview_height_ratio"
 URL_FIELD = "url"
 ELEMENTS_FIELD = "elements"
 QUICK_REPLIES_FIELD = "quick_replies"
@@ -55,6 +56,10 @@ class ButtonType(Enum):
     WEB_URL = "web_url"
     POSTBACK = "postback"
 
+class WebviewType(Enum):
+    COMPACT = "compact"
+    FULL = "full"
+    TALL = "tall"
 
 class ContentType(Enum):
     TEXT = "text"
@@ -62,11 +67,12 @@ class ContentType(Enum):
 
 
 class ActionButton:
-    def __init__(self, button_type, title, url=None, payload=None):
+    def __init__(self, button_type, title, url=None, payload=None, webview_height=None):
         self.button_type = button_type
         self.title = title
         self.url = url
         self.payload = payload
+        self.webview_height = webview_height
 
     def to_dict(self):
         button_dict = {TYPE_FIELD: self.button_type.value}
@@ -76,6 +82,8 @@ class ActionButton:
             button_dict[URL_FIELD] = self.url
         if self.payload:
             button_dict[PAYLOAD_FIELD] = self.payload
+        if self.webview_height:
+            button_dict[WEBVIEW_HEIGHT_FIELD] = self.webview_height
         return button_dict
 
 
