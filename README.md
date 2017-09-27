@@ -91,7 +91,7 @@ There are several types of message: `text`, `image`, `quick replies`, `button te
 Send a simple text or an image to a recipient, just make sure that image URL is a valid link.
 
 ```python
-client.send_text(recipient_id, "Hello, I'm enginebai."
+client.send_text(recipient_id, "Hello, I'm Kartikye."
 client.send_image(recipient_id, "http://image-url.jpg")
 ```
 
@@ -122,10 +122,11 @@ The `ActionButton(button_type, title, url, payload)`  class defines button templ
 |`title`   |The button title  |Y   |
 |`url`   |The link   |Only if `button_type` is `url`   |
 |`payload`   |The click payload string   |Only if `button_type` is `POSTBACK`    |
+|`webview_height`   |The height of the webview |N   |
 
 ```python
-client.send_buttons(recipient_id, "你可以透過下列方式找到我", [
-    ActionButton(ButtonType.WEB_URL, "Blog", "http://blog.enginebai.com"),
+client.send_buttons(recipient_id, "Buttons", [
+    ActionButton(ButtonType.WEB_URL, "Blog", "http://blog.com", webview_height=WebviewType.COMPACT),
 	ActionButton(ButtonType.POSTBACK, "Email", Intent.EMAIL)
 ])
 ```
