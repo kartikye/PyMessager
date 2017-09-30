@@ -174,6 +174,21 @@ client.set_greeting_text("Hi, this is Engine Bai. Nice to meet you!")
 client.set_get_started_button_payload("HELP")  # Specify a payload string.
 ```
 
+### Get a users information
+
+```python
+data = client.get_user_data(user_id)
+```
+|Field Name |Description    |
+|first_name |First name |
+|last_name  |Last name  |
+|profile_pic    |Profile picture    |
+|locale |Locale of the user on Facebook |
+|timezone   |Timezone, number relative to GMT   |
+|gender |Gender |
+|is_payment_enabled |Is the user eligible to receive messenger platform payment messages    |
+|last_ad_referral   |Details of the last Messenger Conversation Ad user was referred from   |
+
 ## Issues
 Feel free to submit bug reports or feature requests and make sure you read the contribution guideline before opening any issue.
 

@@ -7,7 +7,10 @@ import requests
 
 __author__ = "enginebai"
 
-URL_BASE = "https://graph.facebook.com/v2.9/me/"
+API_BASE = 'https://graph.facebook.com/v2.9/'
+
+URL_BASE = API_BASE + 'me/'
+USER_BASE = API_BASE
 
 # send message fields
 RECIPIENT_FIELD = "recipient"
@@ -67,12 +70,13 @@ class ContentType(Enum):
 
 
 class ActionButton:
-    def __init__(self, button_type, title, url=None, payload=None, webview_height=None):
+    def __init__(self, button_type, title, url=None, payload=None, webview_height=None, messenger_extention=None):
         self.button_type = button_type
         self.title = title
         self.url = url
         self.payload = payload
         self.webview_height = webview_height
+        self.messenger_extention = messenger_extention
 
     def to_dict(self):
         button_dict = {TYPE_FIELD: self.button_type.value}
@@ -83,7 +87,9 @@ class ActionButton:
         if self.payload:
             button_dict[PAYLOAD_FIELD] = self.payload
         if self.webview_height:
-            button_dict[WEBVIEW_HEIGHT_FIELD] = self.webview_height
+            button_dict[WEBVIEW_HEIGHT_FIELD] = self.webview_height.value
+        if self.messenger_extention:
+            button_dict['messenger_extensions'] = True
         return button_dict
 
 
@@ -128,12 +134,12 @@ class Messager(object):
         self.access_token = access_token
 
     def subscribe_to_page(self):
-        fmt = "https://graph.facebook.com/v2.9/me/subscribed_apps?access_token={token}"
+        fmt = URL_BASE + "subscribed_apps?access_token={token}"
         return requests.post(fmt.format(token=self.access_token))
 
     def set_greeting_text(self, text):
         data = {"setting_type": "greeting", "greeting": {"text": text}}
-        fmt = "https://graph.facebook.com/v2.9/me/thread_settings?access_token={token}"
+        fmt = URL_BASE + "thread_settings?access_token={token}"
         return requests.post(fmt.format(token=self.access_token),
                              headers={"Content-Type": "application/json"},
                              data=json.dumps(data))
@@ -225,3 +231,7 @@ class Messager(object):
                          text=req.text,
                          recipient=message_data[RECIPIENT_FIELD],
                          content=message_data[MESSAGE_FIELD]))
+    
+    def get_user_data(self, user_id):
+        response = json.loads(requests.get(USER_BASE + msg_id + '?fields=first_name,last_name,gender,is_payment_enabled,locale,profile_pic,timezone&access_token='+self.access_token).text)
+        return response
