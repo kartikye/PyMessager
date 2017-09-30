@@ -233,5 +233,5 @@ class Messager(object):
                          content=message_data[MESSAGE_FIELD]))
     
     def get_user_data(self, user_id):
-        response = json.loads(requests.get(USER_BASE + msg_id + '?fields=first_name,last_name,gender,is_payment_enabled,locale,profile_pic,timezone&access_token='+self.access_token).text)
+        response = json.loads(requests.get(USER_BASE + user_id + '?fields=first_name,last_name,gender,is_payment_enabled,locale,profile_pic,timezone&access_token='+self.access_token).text)
         return response
