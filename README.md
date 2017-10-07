@@ -5,10 +5,6 @@
 
 PyMessager is a Python API for [Facebook Messenger](https://developers.facebook.com/docs/messenger-platform) and a sample project to demonstrate how to develop a chatbot on Facebook Messenger.
 
-![](https://raw.githubusercontent.com/enginebai/PyMessager/master/art/graphic.png)
-
-Complete tutorials are on [Develop a Facebook Bot Using Python](https://medium.com/@enginebai/用python開發facebook-bot-26594f13f9f7#.7iwm148ag) and [Chatbot: From 0 To 1](https://medium.com/dualcores-studio/%E8%81%8A%E5%A4%A9%E6%A9%9F%E5%99%A8%E4%BA%BA%E5%85%A5%E9%96%80-%E5%BE%9E0%E5%88%B01-4792b53a1318) where you can find more detailed information to setup and develop.
-
 ## Before Starting
 1. Prepare a Facebook Page. (to create if you don't have one)
 2. Create a developer application on [Facebook for Developers](https://developers.facebook.com).
@@ -16,13 +12,7 @@ Complete tutorials are on [Develop a Facebook Bot Using Python](https://medium.c
 4. Use [Let's Encrypt](https://letsencrypt.org/getting-started/) to apply SSL certification for your domain name.
 
 ## Install
-To install PyMessager, simply run:
-
-```shell
-$ pip install pymessager
-```
-
-or install from the repository:
+To install PyMessager, run:
 
 ```shell
 $ git clone git@github.com:enginebai/PyMessager.git
@@ -31,8 +21,6 @@ $ pip install -r requirements.txt
 ```
 
 ## Get Started
-
-
 ### Import
 ```python
 from pymessager.message import Messager, ... # something else you need
@@ -83,8 +71,6 @@ if __name__ == '__main__':
 
 
 ## Sender APIs
-![](https://raw.githubusercontent.com/enginebai/PyMessager/master/art/usage.png)
-
 There are several types of message: `text`, `image`, `quick replies`, `button template` or `generic template`. API provides different classes to generate the message template.
 
 ### Sending a text and image
@@ -165,8 +151,6 @@ client.subscribe_to_page()
 ```
 
 ### Set the welcome message and get-started button
-![](https://raw.githubusercontent.com/enginebai/PyMessager/master/art/onboarding.png)
-
 The greeting text will show at the first time you open this chatbot on mobile only. The payload is the trigger when the users click "Get Started" button.
 
 ```python
